@@ -1,0 +1,28 @@
+* tb_pex_tran_tt - closed-loop load-step droop, C-extracted DUT, tt
+.lib /foss/pdks/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include /foss/designs/ldo_project/layout/ldo_pex_closed.spice
+
+Vdd  vdd 0 1.8
+Ib   vdd vbias 10u
+Vref vref 0 0.9
+Ven  load_en 0 pulse(0 1.8 20u 200n 200n 1 2)
+X1 vref vbias vldo load_en vdd 0 ldo_pex_closed
+CL  vldo 0 100p
+IL  vldo 0 100u
+
+.option rshunt=1e12 noopiter
+.nodeset v(vldo)=1.5
+.tran 2n 60u 0 2n
+
+.control
+run
+meas tran vpre   avg v(vldo) from=15u to=19u
+meas tran vmin   min v(vldo) from=19u to=30u
+meas tran vfinal avg v(vldo) from=50u to=60u
+set hcopydevtype=svg
+set color0=white
+set color1=black
+set svg_intopts = ( 1024 768 18 0 1 2 0 )
+hardcopy tran_step_pex_tt.svg v(vldo) xlimit 19.8u 20.8u
+.endc
+.end
