@@ -1,7 +1,6 @@
 # TinyLDO — Capless 1.5 V LDO on SKY130
 
 **Author:** Ashutosh Dubey
-*Alternate version based on the original TinyLDO design by Billy Ouyang ([OGggggish/tt-ota-sky130](https://github.com/OGggggish/tt-ota-sky130)).*
 
 A fully analog, capless 1.5 V low-dropout regulator for Tiny Tapeout on the SKY130 process. A two-stage Miller OTA drives a super-source-follower buffer, which drives a segmented PMOS pass device. Bias generation, the feedback divider, RC compensation and a switched demo load are all on-chip.
 
@@ -60,6 +59,4 @@ docs/             design notes (info.md), pre-layout sims, layout preview
 
 xschem, ngspice, magic, netgen, KLayout (via IIC-OSIC-TOOLS).
 
-## License
-
-See [LICENSE](LICENSE).
+(LICENSE).
